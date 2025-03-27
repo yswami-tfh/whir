@@ -49,6 +49,26 @@ where
         this
     }
 
+    ///
+    /// FS State Machine
+    ///
+    ///     1. V -> P: Sample `initial_combination_randomness` or
+    ///                     `folding_randomness`
+    ///
+    ///     For each WHIR round except last (and first which is in commit)
+    ///         2. P->V: Add round specific Merkle root
+    ///         3. P->V: Add OOD samples
+    ///         4. V->P: Sample STIR Query index over \omega^{folding-factor}
+    ///         5. ??? Proof of work ???
+    ///         6. V->P: Combination Randomness for updating w and h
+    ///         7. P <-> V: Add Sumcheck related FS states
+    ///     Last WHIR Round
+    ///         8. P -> V: Raw final field coefficient
+    ///         9. V -> P: Verifier's challenge
+    ///        10. ??? Proof of work ???
+    ///        11. P <-> V: Final Sumcheck round?
+    ///
+
     fn add_whir_proof<PowStrategy>(
         mut self,
         params: &WhirConfig<F, MerkleConfig, PowStrategy>,

@@ -11,6 +11,7 @@ pub mod statement;
 pub mod stir_evaluations;
 pub mod utils;
 pub mod verifier;
+pub mod batching;
 
 // Only includes the authentication paths
 #[derive(Clone, CanonicalSerialize, CanonicalDeserialize)]
